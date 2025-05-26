@@ -25,6 +25,13 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
+// app.use(cors({
+//   origin: 'http://localhost:3000', // React app origin
+//   credentials: true,               // Needed if using cookies, sessions, etc.
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// }));
+
 app.use(express.json()); // Parse incoming JSON
 const fileUploadMiddleware = require("express-fileupload");
 app.use(fileUploadMiddleware({
