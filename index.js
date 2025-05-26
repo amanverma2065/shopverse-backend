@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 9000;
 
 // ✅ Apply middleware before routes
 app.use(cors({
-  origin: 'http://localhost:3000', // React app origin
+  origin: 'https://shopverse-frontend.vercel.app/', // React app origin
   credentials: true               // Needed if using cookies, sessions, etc.
 }));
 
