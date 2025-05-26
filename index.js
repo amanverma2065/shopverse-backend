@@ -20,14 +20,16 @@ const PORT = process.env.PORT || 9000;
 // ✅ Apply middleware before routes
 app.use(cors({
   origin: 'https://shopverse-frontend.vercel.app', // React app origin
-  credentials: true               // Needed if using cookies, sessions, etc.
+  credentials: true,               // Needed if using cookies, sessions, etc.
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
 app.use(express.json()); // Parse incoming JSON
 const fileUploadMiddleware = require("express-fileupload");
 app.use(fileUploadMiddleware({
-    useTempFiles: true,
-    tempFileDir: '/tmp/'
+  useTempFiles: true,
+  tempFileDir: '/tmp/'
 }));
 
 // ✅ Connect to DB before handling routes
