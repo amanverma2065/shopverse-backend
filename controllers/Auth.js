@@ -6,73 +6,6 @@ const otpGenerator = require("otp-generator")
 const mailSender = require("../utils/mailsender")
 require("dotenv").config();
 
-
-// signup
-// const signup = async (req, res) => {
-
-//     const { firstName, lastName, email, password, confirmPassword, accountType } = req.body;
-
-//     try {
-
-//         if (!firstName || !lastName || !email || !password || !confirmPassword) {
-//             return (
-//                 res.status(403).send({
-//                     success: false,
-//                     message: "All fields are required......",
-//                 })
-//             )
-//         }
-
-//         if (password !== confirmPassword) {
-//             return (
-//                 res.status(400).json({
-//                     success: false,
-//                     message: "Password and Confirm Password do not match.......",
-//                 })
-//             )
-//         }
-
-//         const existingUser = await User.findOne({ email });
-//         if (existingUser) {
-//             console.log("User already exists....");
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "User Already Exist.......",
-//             })
-
-//         }
-
-//         const hashPassword = await bcrypt.hash(password, 12);
-//         const newUser = new User({
-//             firstName,
-//             lastName,
-//             email,
-//             password: hashPassword,
-//             cartItems: {},
-//             accountType
-//         });
-
-//         await newUser.save();
-
-//         return (
-//             res.status(200).json({
-//                 success: true,
-//                 data: newUser,
-//                 message: "User Registered Successfully......",
-//             })
-//         )
-//     }
-//     catch (error) {
-//         console.log(error);
-//         console.error(error);
-//         res.status(500).json({
-//             success: false,
-//             message: error.message,
-//             data: "There is an error",
-//         })
-//     }
-// }
-
 const signup = async (req, res) => {
     try {
         const { firstName, lastName, email, password, confirmPassword, accountType, otp } = req.body;
@@ -108,13 +41,6 @@ const signup = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        //   const profileDetails = await Profile.create({
-        //     gender: null,
-        //     dateOfBirth: null,
-        //     about: null, 
-        //     contactNumber: null,
-        //   });
 
         const user = await User.create({
             firstName,
